@@ -1,0 +1,44 @@
+:root {
+  /* surfaces */
+  --bg: #FFF2E1;
+  --surface: #ffffff;
+  --surface-2: #FFF8EE;
+  --line: #f0dcc0;
+
+  /* text */
+  --ink: #33282b;
+  --muted: #9a8b8e;
+
+  /* palette */
+  --pink: #FF5B7C;
+  --pink-soft: #FFC1CE;
+  --lime: #BEEA7A;
+  --green: #5A8B2F;
+
+  --primary: var(--lime);
+  --primary-ink: #2d4a14;
+  --accent: var(--pink-soft);
+  --danger: var(--pink);
+  --win: var(--green);
+  --lose: var(--pink);
+
+  /* header gradient */
+  --grad-from: var(--pink);
+  --grad-to: var(--pink-soft);
+  --on-grad: #ffffff;
+
+  /* playing cards */
+  --card-face: #ffffff;
+  --card-back: var(--green);
+  --suit-red: #e0405f;
+  --suit-black: #33282b;
+  --card-w: 58px;
+  --card-h: 84px;
+
+  /* shape + type */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 8px 22px rgba(90, 60, 40, 0.1);
+  --font: "Inter", system-ui, sans-serif;
+  --maxw: 460px;
+}

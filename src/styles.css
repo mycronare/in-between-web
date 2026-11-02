@@ -1,0 +1,77 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); }
+button, input { font: inherit; color: inherit; }
+
+.app { min-height: 100%; display: flex; justify-content: center; padding: 12px; }
+.screen {
+  position: relative; overflow: hidden; width: 100%; max-width: var(--maxw);
+  background: var(--surface); border-radius: 32px; box-shadow: var(--shadow);
+  padding: 72px 20px 24px; display: flex; flex-direction: column; gap: 16px;
+}
+.screen { isolation: isolate; }
+.screen::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 130px; z-index: -1;
+  background: linear-gradient(180deg, var(--grad-from), var(--grad-to) 65%, var(--surface));
+}
+h1 { color: var(--on-grad); }
+h1 { margin: 0; font-size: 2rem; letter-spacing: .04em; text-align: center; }
+h2 { margin: 0; font-size: 1.1rem; }
+.muted { color: var(--muted); font-size: .9rem; }
+.center { text-align: center; }
+
+/* form controls */
+.input {
+  width: 100%; padding: 12px 14px; border: 0; border-bottom: 2px solid var(--primary);
+  background: var(--surface-2); border-radius: var(--radius-sm) var(--radius-sm) 0 0; font-size: 1.1rem; text-align: center;
+}
+.input:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
+.btn {
+  border: 0; cursor: pointer; padding: 12px 18px; border-radius: 999px; font-weight: 600;
+  background: var(--primary); color: var(--primary-ink); transition: transform .08s;
+}
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn.ghost { background: transparent; border: 2px solid var(--ink); color: var(--ink); }
+.btn.danger { background: var(--danger); color: #fff; }
+.btn.accent { background: var(--accent); color: var(--ink); }
+.row { display: flex; gap: 10px; }
+.row > * { flex: 1; }
+.error { background: color-mix(in srgb, var(--danger) 14%, white); color: var(--danger); padding: 10px 14px; border-radius: var(--radius-sm); }
+
+/* lobby */
+.code { font-size: 2rem; font-weight: 700; letter-spacing: .15em; text-align: center; background: var(--surface-2); border-radius: var(--radius); padding: 10px; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.list li { display: flex; justify-content: space-between; background: var(--surface-2); padding: 10px 14px; border-radius: var(--radius-sm); }
+.tag { font-size: .75rem; background: var(--accent); border-radius: 999px; padding: 2px 8px; }
+
+/* table */
+.pot { align-self: center; background: var(--accent); border-radius: 999px; padding: 6px 18px; font-weight: 700; font-size: 1.2rem; }
+.players { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.player { background: var(--surface-2); border-radius: var(--radius); padding: 10px; display: grid; gap: 6px; justify-items: center; border: 2px solid transparent; }
+.player.turn { border-color: var(--green); box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 25%, transparent); }
+.player.me .name::after { content: " (you)"; color: var(--muted); font-weight: 400; }
+.name { font-weight: 600; }
+.money { color: var(--muted); font-size: .9rem; }
+.hand { display: flex; gap: 6px; }
+
+/* cards */
+.card {
+  width: var(--card-w); height: var(--card-h); border-radius: 10px; background: var(--card-face);
+  border: 2px solid var(--line); display: grid; place-items: center; font-weight: 700; font-size: 1.3rem; line-height: 1;
+  box-shadow: var(--shadow);
+}
+.card small { display: block; font-size: 1.4rem; text-align: center; }
+.card.red { color: var(--suit-red); }
+.card.black { color: var(--suit-black); }
+.card.back { background: var(--card-back); border-color: transparent; color: #fff; }
+.card.win { border-color: var(--win); } .card.lose { border-color: var(--lose); }
+
+/* draw area + controls */
+.stage { display: grid; justify-items: center; gap: 6px; min-height: calc(var(--card-h) + 28px); }
+.result.win { color: var(--win); font-weight: 700; } .result.lose { color: var(--lose); font-weight: 700; }
+.controls { display: grid; gap: 12px; background: var(--surface-2); border-radius: var(--radius); padding: 14px; }
+.choices .btn { background: var(--surface); color: var(--ink); border: 2px solid var(--line); }
+.choices .btn.on { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); }
+input[type="range"] { width: 100%; accent-color: var(--green); }
+.log { font-size: .85rem; color: var(--muted); display: grid; gap: 2px; }
