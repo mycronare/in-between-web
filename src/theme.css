@@ -1,44 +1,38 @@
+@font-face {
+  font-family: "Nuosu SIL";
+  src: local("Nuosu SIL"), url("/fonts/NuosuSIL-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
 :root {
-  /* surfaces */
-  --bg: #FFF2E1;
-  --surface: #ffffff;
-  --surface-2: #FFF8EE;
-  --line: #f0dcc0;
-
-  /* text */
-  --ink: #33282b;
-  --muted: #9a8b8e;
-
   /* palette */
-  --pink: #FF5B7C;
-  --pink-soft: #FFC1CE;
-  --lime: #BEEA7A;
-  --green: #5A8B2F;
+  --navy: #011627;
+  --red: #ff0022;
+  --turq: #41ead4;
+  --paper: #fdfffc;
+  --pink: #ffc1cf;
 
-  --primary: var(--lime);
-  --primary-ink: #2d4a14;
-  --accent: var(--pink-soft);
-  --danger: var(--pink);
-  --win: var(--green);
-  --lose: var(--pink);
+  /* roles: re-point these to re-theme */
+  --bg: #f4f4f6;
+  --ink: var(--navy);
+  --primary: var(--turq);
+  --accent: var(--pink);
+  --danger: var(--red);
+  --card-red: var(--red);
+  --card-black: var(--navy);
 
-  /* header gradient */
-  --grad-from: var(--pink);
-  --grad-to: var(--pink-soft);
-  --on-grad: #ffffff;
+  /* glass panels and floating cards */
+  --glass: color-mix(in srgb, var(--turq) 55%, transparent);
+  --glass-border: color-mix(in srgb, var(--turq) 70%, white);
+  --blur: 12px;
 
-  /* playing cards */
-  --card-face: #ffffff;
-  --card-back: var(--green);
-  --suit-red: #e0405f;
-  --suit-black: #33282b;
-  --card-w: 58px;
-  --card-h: 84px;
+  /* type */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Nuosu SIL", "Times New Roman", Georgia, serif;
+  --font-mono: ui-monospace, "JetBrains Mono", Menlo, monospace;
 
-  /* shape + type */
-  --radius: 18px;
-  --radius-sm: 12px;
-  --shadow: 0 8px 22px rgba(90, 60, 40, 0.1);
-  --font: "Inter", system-ui, sans-serif;
-  --maxw: 460px;
+  /* shape + motion */
+  --radius: 16px;
+  --shadow: 0 10px 28px rgba(1, 22, 39, 0.12);
+  --t: 0.25s ease;
 }

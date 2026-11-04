@@ -14,4 +14,3 @@ async function post(path, body) {
 }
 export const createRoom = () => post("/api/rooms/create");
 export const joinRoom = (code) => post("/api/rooms/join", { room_code: code.trim().toLowerCase() });
- 

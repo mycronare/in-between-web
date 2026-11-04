@@ -4,7 +4,7 @@ import { wsUrl } from "./api";
 const init = { phase: "home", me: null, role: null, room: null, players: [], game: null, reveal: null, log: [], error: null };
 
 const addPlayer = (list, p) => (list.some((x) => x.id === p.id) ? list : [...list, p]);
-const say = (p, m) => ({ ...p, log: [m, ...p.log].slice(0, 5) });
+const say = (p, m) => ({ ...p, log: [m, ...p.log].slice(0, 40) });
 
 function reduce(p, e) {
   switch (e.type) {
@@ -20,8 +20,10 @@ function reduce(p, e) {
       return { ...p, phase: "table", game: e.state };
     case "GAME_STATE":
       return { ...p, game: e.state };
-    case "CARD_DRAWN":
-      return { ...p, reveal: { player: e.player, card: e.drawn_card, result: null } };
+    case "CARD_DRAWN": {
+      const hand = p.game?.players.find((x) => x.name === e.player)?.hand; // hand as it was before the bet
+      return { ...p, reveal: { player: e.player, card: e.drawn_card, hand, result: null } };
+    }
     case "PLAYER_WON":
     case "PLAYER_LOST": {
       const won = e.type === "PLAYER_WON";
@@ -31,7 +33,7 @@ function reduce(p, e) {
     case "PLAYER_PASSED":
       return say(p, `${e.previous_player} passed`);
     case "ROUND_STARTED":
-      return say({ ...p, reveal: null }, "New round: fresh cards, +$20 in the pot");
+      return say(p, "New round: fresh cards, $20 ante");
     case "GAME_OVER":
       return say(p, e.message);
     case "ERROR":
