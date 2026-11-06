@@ -118,6 +118,7 @@ button, input { font: inherit; color: inherit; }
 .choice.on { background: var(--primary); }
 .ctrl input[type="range"] { width: 100%; accent-color: var(--ink); }
 
+/* round history card: peeks in from the left edge, slides out on hover/focus */
 .log-card {
   position: fixed; left: 0; top: 22vh; z-index: 5; width: 260px; max-height: 56vh; overflow: auto; padding: 18px 18px 18px 20px;
   background: var(--paper); border-radius: 0 var(--radius) var(--radius) 0; box-shadow: var(--shadow);
@@ -135,3 +136,36 @@ button, input { font: inherit; color: inherit; }
   .seats { grid-template-columns: 1fr 1fr; }
   .turn { font-size: 1.5rem; }
 }
+
+/* loading + feedback */
+.spinner { flex: none; display: inline-block; width: 1em; height: 1em; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 25%, transparent); border-top-color: currentColor; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.pick-label { display: flex; align-items: center; gap: 12px; }
+.btn .pick-label { justify-content: center; }
+.pick:disabled { cursor: progress; }
+.pick:disabled:not(.active) { opacity: .55; }
+.btn.loading:disabled { opacity: .9; cursor: progress; }
+.err-card.top { top: 5vh; bottom: auto; }
+.toast {
+  position: fixed; right: 6vw; top: 5vh; z-index: 30; width: min(290px, 88vw); padding: 16px 20px; display: flex; gap: 12px; align-items: center;
+  background: var(--paper); border: 2px solid var(--primary); border-radius: var(--radius); box-shadow: var(--shadow); font-family: var(--font-serif);
+}
+
+/* lobby copy button */
+.code-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.icon-btn { flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: color-mix(in srgb, var(--paper) 55%, transparent); transition: var(--t); }
+.icon-btn:hover { background: var(--paper); transform: translateY(-1px); }
+
+/* reveal countdown */
+.countdown { display: grid; justify-items: center; gap: 6px; font-family: var(--font-serif); }
+.clock { position: relative; width: 64px; height: 64px; display: grid; place-items: center; }
+.clock svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.clock b { font-family: var(--font-sans); font-size: 1.3rem; }
+.clock circle { fill: none; stroke-width: 3; }
+.clock .track { stroke: color-mix(in srgb, var(--ink) 12%, transparent); }
+.clock .ring { stroke: var(--primary); stroke-linecap: round; stroke-dasharray: 119.4; transform: rotate(-90deg); transform-origin: center; animation: drain linear forwards; }
+@keyframes drain { to { stroke-dashoffset: 119.4; } }
+
+/* give up */
+.btn.quit { background: transparent; border-color: var(--danger); color: var(--danger); }
+.btn.danger { background: var(--danger); border-color: var(--danger); color: #fff; }
