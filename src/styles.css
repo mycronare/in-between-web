@@ -37,8 +37,16 @@ button, input { font: inherit; color: inherit; }
   backdrop-filter: blur(var(--blur)); transform: rotate(-2deg); display: flex; align-items: flex-end;
 }
 .title-card h1 { margin: 0; font-size: 2.6rem; line-height: .95; }
-.who { grid-area: who; justify-self: center; display: grid; gap: 14px; width: min(260px, 70vw); }
-.who span { font-family: var(--font-serif); font-size: 1.6rem; }
+.who {
+  grid-area: who; justify-self: center; display: grid; gap: 14px; width: min(260px, 70vw);
+  position: relative; isolation: isolate;
+}
+.who::before {
+  content: ""; position: absolute; inset: -36px -44px; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, var(--paper) 40%, transparent 100%);
+  filter: blur(8px); opacity: .85; transition: opacity var(--t);
+}
+.who:focus-within::before { opacity: 1; }.who span { font-family: var(--font-serif); font-size: 1.6rem; }
 .who input { border: 0; border-bottom: 1.5px solid var(--ink); background: transparent; font-family: var(--font-serif); font-size: 1.4rem; padding: 8px 0; outline: 0; }
 .who input:focus { border-bottom-color: var(--turq); border-bottom-width: 3px; }
 .stack { grid-area: stack; position: relative; width: 340px; height: 320px; justify-self: end; align-self: end; }
