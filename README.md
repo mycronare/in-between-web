@@ -4,7 +4,8 @@ In-Between is the web frontend for a real-time multiplayer card game. Players cr
 
 **Live:** https://your-app.vercel.app
 
-Many thanks to my better half, Elijah, for doing this project with me:
+Many thanks to my better half, Elijah, for doing this project with me: 
+
 **Backend repo:** https://github.com/jijahh/in-between
 
 ## Tech Stack
